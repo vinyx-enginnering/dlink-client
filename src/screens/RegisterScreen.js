@@ -135,7 +135,7 @@ const Register = () => {
               <label className="form-check-label text-muted">
                 <input type="checkbox" className="form-check-input" />
                 <i className="input-helper"></i>I agree to all{" "}
-                <a href="/terms-and-conditions" style={{ color: "#8c5eff" }}>
+                <a href="/privacy" style={{ color: "#8c5eff" }}>
                   Terms & Conditions
                 </a>
               </label>
