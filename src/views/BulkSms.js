@@ -16,7 +16,7 @@ function BulkSms() {
 
   const channelOptions = [
     { value: "generic", label: "Generic" },
-    { value: "dnd", label: "DND" },
+    // { value: "dnd", label: "DND" },
   ];
 
   const submitSelectedChannel = (e) => setSelectedChannel(e.value);
@@ -97,6 +97,9 @@ function BulkSms() {
               </ListGroupItem>
               <ListGroupItem variant="info">
                 DND are for strict number set to Do Not Disturb
+              </ListGroupItem>
+              <ListGroupItem variant="info">
+                Contact us at support@doublelinkng.com to register your personal DND Routes
               </ListGroupItem>
             </ListGroup>
           </Form.Text>

@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
 import store from "./store";
 import reportWebVitals from "./reportWebVitals";
+import registerServiceWorker from 'react-service-worker';
 
 const container = document.getElementById("root");
 
@@ -23,3 +24,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
