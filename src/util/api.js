@@ -4,7 +4,7 @@ import { USER_LOGOUT } from "../constant/types";
 
 const api = axios.create({
   // baseURL: "https://examination.herokuapp.com",
-   baseURL: "https://dlserverapp.herokuapp.com",
+   baseURL: "http://localhost:8000",
   headers: {
     "Content-Type": "application/json",
   },

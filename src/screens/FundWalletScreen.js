@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Accordion, Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {fundCustomerWallet} from "../actions/wallet.js";
+import { fundCustomerWallet } from "../actions/wallet.js";
 import Message from "../components/Message.js";
 
 function FundWalletScreen() {
@@ -17,30 +17,31 @@ function FundWalletScreen() {
   const { loading, error, userInfo } = userLogin;
 
   const fundedWallet = useSelector((state) => state.fundWallet);
-  const {loading: wallet_loading, error: wallet_error, transaction} = fundedWallet;
-
-  
+  const {
+    loading: wallet_loading,
+    error: wallet_error,
+    transaction,
+  } = fundedWallet;
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    var merchantCode = "MX59529";
-    var payItemId = "Default_Payable_MX59529";
-
     var transRef = randomReference();
-    var paymentRequest = {
-      merchant_code: merchantCode,
-      pay_item_id: payItemId,
-      txn_ref: transRef,
-      amount: amount * 100,
-      cust_id: userInfo && userInfo._id,
-      currency: "566",
-      site_redirect_url: window.location.origin,
-      onComplete: paymentCallback,
-      mode: "LIVE",
-    };
 
-    window.webpayCheckout(paymentRequest);
+    const squadInstance = new window.squad({
+      key: "pk_6877956d4719eaaa3ea69739d1b9c9f3a4d83da0",
+      amount: amount * 100,
+      transaction_ref: transRef,
+      email: userInfo && userInfo.email,
+      currency_code: "NGN",
+      onClose: () => console.log("Payment Cancled"),
+      onLoad: () => console.log("Payment Process Started..."),
+      onSuccess: () =>
+        dispatch(fundCustomerWallet(amount, "Funded Wallet", transRef)),
+    });
+
+    squadInstance.setup();
+    squadInstance.open();
   };
 
   //generate a random transaction ref
@@ -56,9 +57,8 @@ function FundWalletScreen() {
 
   //callback function that gets triggered on payment success or failure
   function paymentCallback(response) {
-    if(response != null) {
-        dispatch(fundCustomerWallet(amount, response.desc, response.txnref));
-        console.log(response);
+    if (response != null) {
+      console.log(response);
     }
   }
 
@@ -67,11 +67,13 @@ function FundWalletScreen() {
       <h3 className="mt-5" style={{ color: "#8c5eff" }}>
         Fund Your Wallet
       </h3>
-      {transaction && <Message variant="success">{transaction.narration}</Message>}
+      {transaction && (
+        <Message variant="success">{transaction.narration}</Message>
+      )}
       <p className="lead">Choose your payment option below</p>
       <Accordion>
         <Accordion.Item eventKey="0">
-          <Accordion.Header>Pay with InterSwitch</Accordion.Header>
+          <Accordion.Header>Automatic Funding</Accordion.Header>
           <Accordion.Body>
             This method of payment supports cards, transfers and other payment
             options - most flexible
@@ -111,15 +113,19 @@ function FundWalletScreen() {
               </Form.Group>
 
               <div className="d-grid">
-                <input type="submit" className="btn btn-primary" placeholder="Pay Now"/>
+                <input
+                  type="submit"
+                  className="btn btn-primary"
+                  placeholder="Pay Now"
+                />
               </div>
             </Form>
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="1">
-          <Accordion.Header>Pay with PayPal</Accordion.Header>
+          <Accordion.Header>Pay with Card</Accordion.Header>
           <Accordion.Body>
-            <p className="display-6">This Feature this coming in the next version</p>
+            <p className="display-6">This Feature is not available yet</p>
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

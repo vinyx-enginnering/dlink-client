@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import { register } from "../actions/user";
+import { register, user_validate } from "../actions/user";
 
 const Register = () => {
   const [fullname, setFullName] = useState("");
-  const [access_token, setAccessToken] = useState("");
+  const [isValid, setIsValid] = useState(false);
   const [phone_number, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,26 +18,48 @@ const Register = () => {
   const navigate = useNavigate();
 
   const userRegister = useSelector((state) => state.userRegister);
-  const { loading, error, userInfo } = userRegister;
+  const { loading: reg_loading, error: reg_error, userInfo } = userRegister;
+
+  const validateUser = useSelector((state) => state.validateUser);
+  const { loading, error, valid } = validateUser;
 
   useEffect(() => {
     if (userInfo) {
       return navigate("/dashboard");
     }
+    
   }, [dispatch, navigate, userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    const squadInstance = new window.squad({
+      key: "pk_6877956d4719eaaa3ea69739d1b9c9f3a4d83da0",
+      amount: 2000 * 100,
+      email: email,
+      currency_code: "NGN",
+      onClose: () => console.log("Payment Cancled"),
+      onLoad: () => console.log("Payment Process Started..."),
+      onSuccess: () =>
+        dispatch(register(fullname, phone_number, email, password)),
+    });
+
+    squadInstance.setup();
+    squadInstance.open();
+  };
+
+  const validateMe = (e) => {
+    e.preventDefault();
+
     if (
       email === "" ||
       fullname === "" ||
       password === "" ||
-      phone_number === "" ||
-      access_token === ""
+      phone_number === ""
     ) {
-      return alert("Kindly fill in all fields")
+      return alert("Kindly fill in all fields");
     } else {
-      dispatch(register(access_token, fullname, phone_number, email, password));
+      dispatch(user_validate(email));
     }
   };
 
@@ -53,105 +75,95 @@ const Register = () => {
     >
       <FormContainer>
         <div style={{ display: "flex" }}>
-          <img
-            src={require("../assets/images/icon.png")}
-            style={{
-              width: "50px",
-              height: "50px",
-              borderRadius: "50%",
-              marginBottom: "1rem",
-            }}
-            alt="logo"
-          />
-
           <h3
             className=""
             style={{ color: "#8c5eff", margin: "8px 0px", padding: "0px" }}
           >
             {" "}
-            | Double Link
+            Doublelink Business
           </h3>
         </div>
 
-        <p className="lead m-0 p-0">register a new account</p>
-        <hr />
+        <p className="lead m-0 p-0 mb-5">Create an account</p>
 
         {loading && <Loader />}
         {error && <Message variant="danger">{error}</Message>}
+        {reg_loading && <Loader />}
+        {reg_error && <Message variant="danger">{error}</Message>}
 
         <Form onSubmit={submitHandler}>
-        <Form.Group controlId="name">
-            <Form.Label>Activation Token</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder="Paste Token here"
-              value={access_token}
-              onChange={(e) => setAccessToken(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId="name">
+          <Form.Group controlId="name" className="mb-3">
             <Form.Label>Full Name</Form.Label>
             <Form.Control
               type="name"
-              placeholder="Enter Full Name"
               value={fullname}
               onChange={(e) => setFullName(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
-          <Form.Group controlId="email">
+          <Form.Group controlId="email" className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
-              placeholder="Enter Your Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
-          <Form.Group controlId="gender">
+          <Form.Group controlId="gender" className="mb-3">
             <Form.Label>Phone Number </Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter Phone Number"
               value={phone_number}
               onChange={(e) => setPhoneNumber(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
-          <Form.Group controlId="password">
+          <Form.Group controlId="password" className="mb-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Enter secure passcode"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
-          <div className="mt-1">
-            <div className="form-check">
-              <label className="form-check-label text-muted">
-                <input type="checkbox" className="form-check-input" />
-                <i className="input-helper"></i>I agree to all{" "}
-                <a href="/privacy" style={{ color: "#8c5eff" }}>
-                  Terms & Conditions
-                </a>
-              </label>
-            </div>
+          <div className="mt-2">
+            By continuing you agree to all{" "}
+            <a href="/privacy" style={{ color: "#8c5eff" }}>
+              Terms & Conditions
+            </a>
           </div>
+          {isValid === false ? <a href="#">Validate</a> : <p>Hello</p>}
 
-          <div className="d-grid gap-2">
-            <Button
-              type="submit"
-              variant="primary"
-              className="btn-block mt-3"
-              style={{ backgroundColor: "#8c5eff", border: "none" }}
-            >
-              Register
-            </Button>
-          </div>
+          <Row>
+            <Col>
+              <div className="d-grid gap-2">
+                <Button
+                  onClick={validateMe}
+                  variant="primary"
+                  className="mt-3"
+                  style={{ backgroundColor: "#8c5eff", border: "none" }}
+                >
+                  Validate
+                </Button>
+              </div>
+            </Col>
+            <Col>
+              <div className="d-grid gap-2">
+                {valid && (
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    className="mt-3"
+                    style={{ backgroundColor: "#8c5eff", border: "none" }}
+                  >
+                    Continue
+                  </Button>
+                )}
+              </div>
+            </Col>
+          </Row>
         </Form>
 
         <Row className="py-3">

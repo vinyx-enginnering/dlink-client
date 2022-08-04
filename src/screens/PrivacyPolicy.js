@@ -655,14 +655,7 @@ function PrivacyPolicy() {
           <p>Don't hesitate to contact us if you have any questions.</p>
           <ul>
             <li>
-              Via Email:{" "}
-              <a
-                href="/cdn-cgi/l/email-protection"
-                class="__cf_email__"
-                data-cfemail="04777174746b767044606b71666861686d6a6f6a632a676b69"
-              >
-                [email&#160;protected]
-              </a>
+              Via Email: support@doublelinkng,
             </li>
           </ul>
         </div>

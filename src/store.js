@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import { userEditReducer, userGetReducer, userLoginReducer, userRegisterReducer } from "./reducers/user";
+import { userEditReducer, userGetReducer, userLoginReducer, userRegisterReducer, userValidateReducer } from "./reducers/user";
 import { fundCustomerWallet, getCustomerWallet } from "./reducers/wallet";
 import {
   getCustomerTransactions,
@@ -46,6 +46,7 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userEdit: userEditReducer,
   getUser: userGetReducer,
+  validateUser: userValidateReducer,
 
   // wallet reducers list
   getWallet: getCustomerWallet,

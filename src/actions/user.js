@@ -13,7 +13,40 @@ import {
   USER_REGISTER_FAILED,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
+  VALIDATE_USER_REQUEST,
+  VALIDATE_USER_SUCCESS,
+  VALIDATE_USER_FAIL,
 } from "../constant/types.js";
+
+// VALIDATE USERS
+export const user_validate = (email) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: VALIDATE_USER_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await api.post("/customer/validate", { email }, config);
+
+    dispatch({
+      type: VALIDATE_USER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: VALIDATE_USER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 // CUSTOMER LOGIN PROCESS
 export const login = (email, password) => async (dispatch, getState) => {
@@ -62,7 +95,7 @@ export const logout = () => (dispatch) => {
 
 // STUDENT REGISTRATION PROCESS
 export const register =
-  (access_token, fullname, phone_number, email, password) =>
+  (fullname, phone_number, email, password) =>
   async (dispatch, getState) => {
     try {
       dispatch({
@@ -78,7 +111,6 @@ export const register =
       const { data } = await api.post(
         "/customer/register",
         {
-          access_token,
           fullname,
           phone_number,
           email,
@@ -172,7 +204,6 @@ export const get_user = () => async (dispatch, getState) => {
       type: GET_USER_SUCCESS,
       payload: data,
     });
-    
   } catch (error) {
     dispatch({
       type: GET_USER_FAIL,

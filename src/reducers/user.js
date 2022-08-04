@@ -11,8 +11,26 @@ import {
   EDIT_CUSTOMER_SUCCESS,
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
-  GET_USER_FAIL
+  GET_USER_FAIL,
+  VALIDATE_USER_REQUEST,
+  VALIDATE_USER_SUCCESS,
+  VALIDATE_USER_FAIL
 } from "../constant/types";
+
+
+export const userValidateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case VALIDATE_USER_REQUEST:
+      return { loading: true };
+    case VALIDATE_USER_SUCCESS:
+      return { loading: false, valid: action.payload };
+    case VALIDATE_USER_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
 
 export const userLoginReducer = (state = {}, action) => {
   switch (action.type) {
