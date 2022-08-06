@@ -95,7 +95,7 @@ export const logout = () => (dispatch) => {
 
 // STUDENT REGISTRATION PROCESS
 export const register =
-  (fullname, phone_number, email, password) =>
+  (plan, fullname, phone_number, email, password) =>
   async (dispatch, getState) => {
     try {
       dispatch({
@@ -111,6 +111,7 @@ export const register =
       const { data } = await api.post(
         "/customer/register",
         {
+          plan,
           fullname,
           phone_number,
           email,

@@ -6,6 +6,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import { register, user_validate } from "../actions/user";
+import Select from "react-select";
 
 const Register = () => {
   const [fullname, setFullName] = useState("");
@@ -13,9 +14,12 @@ const Register = () => {
   const [phone_number, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState(2000);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const submitSelectedPlan = (e) => setSelectedPlan(e.value);
 
   const userRegister = useSelector((state) => state.userRegister);
   const { loading: reg_loading, error: reg_error, userInfo } = userRegister;
@@ -35,13 +39,13 @@ const Register = () => {
 
     const squadInstance = new window.squad({
       key: "pk_6877956d4719eaaa3ea69739d1b9c9f3a4d83da0",
-      amount: 2000 * 100,
+      amount: selectedPlan * 100,
       email: email,
       currency_code: "NGN",
       onClose: () => console.log("Payment Cancled"),
       onLoad: () => console.log("Payment Process Started..."),
       onSuccess: () =>
-        dispatch(register(fullname, phone_number, email, password)),
+        dispatch(register(selectedPlan, fullname, phone_number, email, password)),
     });
 
     squadInstance.setup();
@@ -62,6 +66,11 @@ const Register = () => {
       dispatch(user_validate(email));
     }
   };
+
+  const paymentOptions = [
+    { value: 1500, label: "1,500 (Monthly plan)" },
+    { value: 10000, label: "10,000 (Yearly plan)" },
+  ];
 
   return (
     <div
@@ -84,8 +93,8 @@ const Register = () => {
           </h3>
         </div>
 
-        <p className="lead m-0 p-0 mb-5">Create an account</p>
-
+        <p className="lead m-0 p-0 mb-0">Create an account</p>
+      <hr />
         {loading && <Loader />}
         {error && <Message variant="danger">{error}</Message>}
         {reg_loading && <Loader />}
@@ -128,13 +137,18 @@ const Register = () => {
             ></Form.Control>
           </Form.Group>
 
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Select Plan</Form.Label>
+          <Select options={paymentOptions} onChange={submitSelectedPlan} />
+        </Form.Group>
+
           <div className="mt-2">
             By continuing you agree to all{" "}
             <a href="/privacy" style={{ color: "#8c5eff" }}>
               Terms & Conditions
             </a>
           </div>
-          {isValid === false ? <a href="#">Validate</a> : <p>Hello</p>}
+         
 
           <Row>
             <Col>

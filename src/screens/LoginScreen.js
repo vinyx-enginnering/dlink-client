@@ -32,7 +32,6 @@ const Login = () => {
 
   return (
     <div
-
       style={{
         display: "flex",
         justifyContent: "center",
@@ -41,28 +40,16 @@ const Login = () => {
       }}
     >
       <FormContainer>
-        <div  style={{ display: "flex" }}>
-          <img
-            src={require("../assets/images/icon.png")}
-            style={{
-              width: "50px",
-              height: "50px",
-              borderRadius: "50%",
-              marginBottom: "1rem",
-            }}
-            alt="logo"
-          />
-
+        <div style={{ display: "flex" }}>
           <h3
             className=""
             style={{ color: "#8c5eff", margin: "8px 0px", padding: "0px" }}
           >
-            {" "}
-            | Double Link
+            Doublelink Business
           </h3>
         </div>
 
-        <p className="lead m-0 p-0">login to continue</p>
+        <p className="lead m-0 p-0">Login to continue</p>
         <hr />
         {error && <Message variant="danger">{error}</Message>}
         {loading && <Loader />}
@@ -71,17 +58,17 @@ const Login = () => {
             <Form.Label>Email Address</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter Email Address"
+              
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
-          <Form.Group controlId="password">
+          <Form.Group controlId="password" className="mt-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Enter password"
+              
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>

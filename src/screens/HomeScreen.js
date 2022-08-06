@@ -58,7 +58,10 @@ function HomeScreen() {
                   >
                     Get Started
                   </a>
-                  <a className="btn btn-outline-light btn-lg px-4" href="#features">
+                  <a
+                    className="btn btn-outline-light btn-lg px-4"
+                    href="#features"
+                  >
                     Learn More
                   </a>
                 </div>
@@ -197,7 +200,10 @@ function HomeScreen() {
                 <div className="btn btn-outline-light btn-lg mt-4">
                   <FaGooglePlay /> Download mobile app
                 </div>
-                <div className="btn btn-outline-light btn-lg mt-3" href="/login">
+                <div
+                  className="btn btn-outline-light btn-lg mt-3"
+                  href="/login"
+                >
                   <FaDesktop /> Use the Web portal
                 </div>
               </div>
@@ -209,7 +215,7 @@ function HomeScreen() {
       <section className="bg-light py-5 border-bottom">
         <div className="container px-5 my-5">
           <div className="text-center mb-5">
-            <h2 className="fw-bolder">Pay Once and Get Activated!</h2>
+            <h2 className="fw-bolder display-6">Let's Get you ready for business!</h2>
             <p className="lead mb-0">
               Get started with a flexible pricing that allows you to focus on
               making profit
@@ -224,11 +230,11 @@ function HomeScreen() {
                 <div className="card-body p-5">
                   <div className="small text-uppercase fw-bold">
                     <i className="bi bi-star-fill text-warning"></i>
-                    Activation
+                    Premium
                   </div>
                   <div className="mb-3">
                     <span className="display-4 fw-bold">N10,000</span>
-                    <span className="text-muted"></span>
+                    <span className="text-muted">/year</span>
                   </div>
                   <ul className="list-unstyled mb-4">
                     <li className="mb-2">
@@ -236,36 +242,28 @@ function HomeScreen() {
                       <strong>Mobile App</strong>
                     </li>
                     <li className="mb-2">
-                     
                       <FaCheckCircle color="#8c5eff" /> Portal Access
                     </li>
                     <li className="mb-2">
-                     
                       <FaCheckCircle color="#8c5eff" /> Desktop Solution
                     </li>
                     <li className="mb-2">
-                     
                       <FaCheckCircle color="#8c5eff" /> EPIN Manager
                     </li>
                     <li className="mb-2">
-                     
                       <FaCheckCircle color="#8c5eff" /> Cable TV Subscriptions
                     </li>
                     <li className="mb-2">
-                     
                       <FaCheckCircle color="#8c5eff" /> Mobile Topup
                     </li>
                     <li className="mb-2">
-                     
                       <FaCheckCircle color="#8c5eff" /> Internet Subscriptions
                     </li>
                     <li className="mb-2">
-                     
                       <FaCheckCircle color="#8c5eff" /> Whatsapp & SMS Bulk
                       Messaging
                     </li>
                     <li className="">
-                     
                       <FaCheckCircle color="#8c5eff" /> Buy epins
                     </li>
                   </ul>
@@ -282,53 +280,51 @@ function HomeScreen() {
               <div className="card">
                 <div className="card-body p-5">
                   <div className="small text-uppercase fw-bold text-muted">
-                    free
+                    Getting Started
                   </div>
                   <div className="mb-3">
-                    <span className="display-4 fw-bold">N0.00</span>
-                    <span className="text-muted"></span>
+                    <span className="display-4 fw-bold">N1,500</span>
+                    <span className="text-muted">/month</span>
                   </div>
                   <ul className="list-unstyled mb-4">
                     <li className="mb-2">
                       <FaCheckCircle color="#8c5eff" />{" "}
                       <strong>Mobile App</strong>
                     </li>
-                    <li className="mb-2 text-decoration-line-through">
-                     
+                    <li className="mb-2 ">
+                      <FaCheckCircle color="#8c5eff" /> {" "}
                       Portal Access
                     </li>
-                    <li className="mb-2 text-decoration-line-through">
-                     
+                    <li className="mb-2 ">
+                      <FaCheckCircle color="#8c5eff" /> {" "}
                       Desktop Solution
                     </li>
-                    <li className="mb-2 text-decoration-line-through">
-                     
+                    <li className="mb-2 ">
+                      <FaCheckCircle color="#8c5eff" />{" "} 
                       EPIN Manager
                     </li>
-                    <li className="mb-2 text-decoration-line-through">
-                     
+                    <li className="mb-2 ">
+                      <FaCheckCircle color="#8c5eff" /> {" "}
                       Cable TV Subscriptions
                     </li>
                     <li className="mb-2">
-                     
-                      <FaCheckCircle color="#8c5eff" /> Mobile Topup
+                      <FaCheckCircle color="#8c5eff" /> {" "}Mobile Topup
                     </li>
                     <li className="mb-2">
-                     
-                      <FaCheckCircle color="#8c5eff" /> Internet Subscriptions
+                      <FaCheckCircle color="#8c5eff" /> {" "}Internet Subscriptions
                     </li>
-                    <li className="mb-2 text-decoration-line-through">
-                     
+                    <li className="mb-2 ">
+                      <FaCheckCircle color="#8c5eff" /> {" "}
                       Whatsapp & SMS Bulk Messaging
                     </li>
-                    <li className="text-decoration-line-through">
-                     
+                    <li className="">
+                      <FaCheckCircle color="#8c5eff" />{" "}
                       Buy epins
                     </li>
                   </ul>
                   <div className="d-grid">
-                    <a className="btn btn-outline-dark" href="#">
-                      Download Mobile App
+                    <a className="btn btn-outline-dark" href="/register">
+                      Get Started
                     </a>
                   </div>
                 </div>
@@ -352,7 +348,6 @@ function HomeScreen() {
         </div>
       </section>
 
-      
       <AppFooter />
     </>
   );
