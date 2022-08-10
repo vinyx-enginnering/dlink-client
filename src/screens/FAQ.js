@@ -20,11 +20,11 @@ function FAQ() {
               </Accordion.Header>
               <Accordion.Body>
                 <p className="lead py-2">
-                  Activiation involve requesting for access key, this is
-                  necessary to unlock the web Portal
+                  Activiation involve registering a valid merchant account, this is
+                  necessary for a smooth business operation
                 </p>
                 <a href="/contact">
-                  Request for access here, by contacting the support team
+                  Make sure you fill in valid information when registering a new account, if you have any concerns kindly contact the support team
                 </a>
               </Accordion.Body>
             </Accordion.Item>
@@ -87,27 +87,6 @@ function FAQ() {
                 <p className="lead">
                   If you lose your password, you'll have to contact your help
                   centre, for account password reset!
-                </p>
-              </Accordion.Body>
-            </Accordion.Item>
-
-            <Accordion.Item eventKey="4">
-              <Accordion.Header>
-                <span className="h3">
-                  How Do I Get My Registration Token After Payment?
-                </span>
-              </Accordion.Header>
-              <Accordion.Body>
-                <p className="lead">
-                  After You've paid, for your Registration Token
-                </p>
-
-                <p className="lead">
-                  It will be sent to your email, or Whatsapp
-                </p>
-
-                <p className="lead">
-                  Ensure to contact us, immediately you've paid
                 </p>
               </Accordion.Body>
             </Accordion.Item>

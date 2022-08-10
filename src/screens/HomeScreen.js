@@ -1,17 +1,11 @@
 import React from "react";
 import {
-  FaCheck,
+  
   FaCheckCircle,
-  FaCheckDouble,
-  FaCross,
-  FaDeskpro,
+  
   FaDesktop,
   FaGooglePlay,
-  FaMailBulk,
-  FaPrint,
-  FaSave,
-  FaWallet,
-  FaWeightHanging,
+  
 } from "react-icons/fa";
 import {
   Row,
@@ -19,8 +13,7 @@ import {
   Container,
   Image,
   Card,
-  ListGroup,
-  ListGroupItem,
+  
 } from "react-bootstrap";
 import AppFooter from "../components/AppFooter";
 
@@ -197,15 +190,20 @@ function HomeScreen() {
                   .
                 </p>
 
-                <div className="btn btn-outline-light btn-lg mt-4">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.doublelink.mobile"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-outline-light btn-lg mt-4"
+                >
                   <FaGooglePlay /> Download mobile app
-                </div>
-                <div
-                  className="btn btn-outline-light btn-lg mt-3"
+                </a>
+                <a
                   href="/login"
+                  className="btn btn-outline-light btn-lg mt-3"
                 >
                   <FaDesktop /> Use the Web portal
-                </div>
+                </a>
               </div>
             </Col>
           </Row>
@@ -215,7 +213,9 @@ function HomeScreen() {
       <section className="bg-light py-5 border-bottom">
         <div className="container px-5 my-5">
           <div className="text-center mb-5">
-            <h2 className="fw-bolder display-6">Let's Get you ready for business!</h2>
+            <h2 className="fw-bolder display-6">
+              Let's Get you ready for business!
+            </h2>
             <p className="lead mb-0">
               Get started with a flexible pricing that allows you to focus on
               making profit
@@ -260,7 +260,7 @@ function HomeScreen() {
                       <FaCheckCircle color="#8c5eff" /> Internet Subscriptions
                     </li>
                     <li className="mb-2">
-                      <FaCheckCircle color="#8c5eff" /> Whatsapp & SMS Bulk
+                      <FaCheckCircle color="#8c5eff" /> Bulk Messaging
                       Messaging
                     </li>
                     <li className="">
@@ -283,7 +283,7 @@ function HomeScreen() {
                     Getting Started
                   </div>
                   <div className="mb-3">
-                    <span className="display-4 fw-bold">N1,500</span>
+                    <span className="display-4 fw-bold">N1,000</span>
                     <span className="text-muted">/month</span>
                   </div>
                   <ul className="list-unstyled mb-4">
@@ -292,34 +292,29 @@ function HomeScreen() {
                       <strong>Mobile App</strong>
                     </li>
                     <li className="mb-2 ">
-                      <FaCheckCircle color="#8c5eff" /> {" "}
-                      Portal Access
+                      <FaCheckCircle color="#8c5eff" /> Portal Access
                     </li>
                     <li className="mb-2 ">
-                      <FaCheckCircle color="#8c5eff" /> {" "}
-                      Desktop Solution
+                      <FaCheckCircle color="#8c5eff" /> Desktop Solution
                     </li>
                     <li className="mb-2 ">
-                      <FaCheckCircle color="#8c5eff" />{" "} 
-                      EPIN Manager
+                      <FaCheckCircle color="#8c5eff" /> EPIN Manager
                     </li>
                     <li className="mb-2 ">
-                      <FaCheckCircle color="#8c5eff" /> {" "}
-                      Cable TV Subscriptions
+                      <FaCheckCircle color="#8c5eff" /> Cable TV Subscriptions
                     </li>
                     <li className="mb-2">
-                      <FaCheckCircle color="#8c5eff" /> {" "}Mobile Topup
+                      <FaCheckCircle color="#8c5eff" /> Mobile Topup
                     </li>
                     <li className="mb-2">
-                      <FaCheckCircle color="#8c5eff" /> {" "}Internet Subscriptions
+                      <FaCheckCircle color="#8c5eff" /> Internet Subscriptions
                     </li>
                     <li className="mb-2 ">
-                      <FaCheckCircle color="#8c5eff" /> {" "}
-                      Whatsapp & SMS Bulk Messaging
+                      <FaCheckCircle color="#8c5eff" /> Bulk Messaging
+                      Messaging
                     </li>
                     <li className="">
-                      <FaCheckCircle color="#8c5eff" />{" "}
-                      Buy epins
+                      <FaCheckCircle color="#8c5eff" /> Buy epins
                     </li>
                   </ul>
                   <div className="d-grid">
@@ -341,8 +336,8 @@ function HomeScreen() {
             <a className="btn btn-primary btn-lg px-5 mx-2" href="/register">
               Sign up
             </a>
-            <a className="btn btn-outline-light btn-lg px-2" href="/contact">
-              Request for Access
+            <a className="btn btn-outline-light btn-lg px-2" rel="noreferrer" href="https://web.facebook.com/doublelinkmobile" target="_blank">
+              Learn more
             </a>
           </div>
         </div>

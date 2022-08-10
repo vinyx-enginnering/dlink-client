@@ -10,8 +10,7 @@ function ContactUs() {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+
 
   const sendMessage = useSelector((state) => state.sendMessage);
   const { loading, error, message: response_message } = sendMessage;
@@ -40,8 +39,8 @@ function ContactUs() {
         <hr />
         <ListGroup>
           <ListGroupItem className="p-2 lead">
-            <span style={{ color: "#8c5eff" }}>Contact Line:</span> +234 701
-            7642 649
+            <span style={{ color: "#8c5eff" }}>Contact Line:</span> +234 905
+            1375 350
           </ListGroupItem>
 
           <ListGroupItem className="p-2 lead">
@@ -59,6 +58,7 @@ function ContactUs() {
           </ListGroupItem>
         </ListGroup>
         <hr />
+        {error && <p className="lead" style={{color: "#8c5eff"}}>{error}</p>}
         {response_message && <p className="lead" style={{color: "#8c5eff"}}>Your message has been send to our support center, we'll get in touch soon..</p>}
         <Form
           className="text-light lead p-4"

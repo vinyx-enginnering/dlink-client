@@ -3,11 +3,10 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import {
   FaArrowAltCircleRight,
   FaFacebookSquare,
-  FaInstagram,
-  FaInstagramSquare,
+
   FaLinkedinIn,
-  FaTwitterSquare,
-  FaUser,
+
+  FaYoutube,
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { send_newsletter } from "../actions/message.js";
@@ -108,6 +107,7 @@ function AppFooter() {
                 <Button
                   variant="outline-primary"
                   target="_blank"
+                  rel="noreferrer"
                   href="https://linkedin.com/company/doublelink"
                 >
                   <FaLinkedinIn />
@@ -116,12 +116,19 @@ function AppFooter() {
                   variant="outline-light"
                   className="mx-2"
                   target="_blank"
+                  rel="noreferrer"
                   href="https://web.facebook.com/Doublelink-Mobile-106818018775194"
                 >
                   <FaFacebookSquare />
                 </Button>
-                <Button variant="outline-success">
-                  <FaInstagram />
+                <Button 
+                  variant="outline-success"
+                  target="_blank"
+                  href="https://www.youtube.com/channel/UCWgJRVX644pGFlW_TlrZ1Sg"
+                  rel="noreferrer"
+                
+                >
+                  <FaYoutube />
                 </Button>
               </div>
             </div>
@@ -130,7 +137,7 @@ function AppFooter() {
         <div>
           <p className="text-center" style={{ color: "#8c5eff" }}>
             Copyright 2022. Doublelink Business Solution |{" "}
-            <a href="#" className="text-decoration-none text-light">
+            <a href="/" className="text-decoration-none text-light">
               support@doublelinkng.com
             </a>
           </p>

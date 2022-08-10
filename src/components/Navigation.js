@@ -121,9 +121,9 @@ const Navigation = () => {
         </Container>
       </Navbar>
       <FloatingWhatsApp
-        phoneNumber="2347017642649"
-        accountName="Double Link"
-        statusMessage="Typically replies within 10 mins"
+        phoneNumber="2349051375350"
+        accountName="Doublelink Support"
+        statusMessage="Typically replies within 2 mins"
         allowClickAway
         notification
         notificationDelay={180000}
