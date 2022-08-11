@@ -14,7 +14,7 @@ const Register = () => {
   const [phone_number, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [selectedPlan, setSelectedPlan] = useState(2000);
+  const [selectedPlan, setSelectedPlan] = useState(1000);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -68,7 +68,7 @@ const Register = () => {
   };
 
   const paymentOptions = [
-    { value: 1500, label: "1,500 (Monthly plan)" },
+    { value: 1000, label: "1,000 (Monthly plan)" },
     { value: 10000, label: "10,000 (Yearly plan)" },
   ];
 

@@ -35,6 +35,7 @@ import VTPassData from "./views/VTPassData.js";
 import SmileInternet from "./views/SmileInternet.js";
 import SpectranetInternet from "./views/SpectranetInternet.js";
 import EditProfile from "./screens/EditProfile.js";
+import LoginForm from "./screens/LoginForm.js";
 
 const App = () => {
   return (
@@ -81,6 +82,7 @@ const App = () => {
         <Route path="/print/eti-100" element={<Etisalat100Voucher />} />
         <Route path="/print/eti-200" element={<Etisalat200Voucher />} />
         <Route path="/print/eti-500" element={<Etisalat500Voucher />} />
+        <Route path="/resource/authenticate" element={<LoginForm />} />
       </Routes>
     </Router>
   );

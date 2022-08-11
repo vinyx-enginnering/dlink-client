@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   FaBuyNLarge,
@@ -28,9 +28,11 @@ import PrintingCards from "../views/PrintingCards";
 import PurchaseBulkPins from "../views/PurchaseBulkPins";
 import GoTV from "../views/GoTV";
 import DsTV from "../views/DsTV";
+import { logout } from "../actions/user";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -40,6 +42,13 @@ const Dashboard = () => {
       return navigate("/login");
     }
   }, []);
+
+
+  useEffect(() => {
+    if(userInfo && userInfo.permission < 1) {
+      dispatch(logout())
+    }
+  }, [userInfo])
 
   return (
     <div
