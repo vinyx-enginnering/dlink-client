@@ -27,23 +27,57 @@ function FundWalletScreen() {
     e.preventDefault();
 
     var transRef = randomReference();
+    const fees = (amount * 1) / 100;
 
-    const squadInstance = new window.squad({
-      key: "pk_6877956d4719eaaa3ea69739d1b9c9f3a4d83da0",
-      amount: amount * 100,
-      transaction_ref: transRef,
-      email: userInfo && userInfo.email,
-      currency_code: "NGN",
-      onClose: () => console.log("Payment Cancled"),
-      onLoad: () => console.log("Payment Process Started..."),
-      onSuccess: () =>
-        dispatch(fundCustomerWallet(amount, "Funded Wallet", transRef)),
+    // Pay with Monnify
+    window.MonnifySDK.initialize({
+      amount: amount,
+      currency: "NGN",
+      reference: `${new Date().getTime()}`,
+      customerFullName: userInfo && userInfo.fullname,
+      customerEmail: userInfo && userInfo.email,
+      apiKey: "MK_PROD_YYE1WG2HE0",
+      contractCode: "1079257248",
+      paymentDescription: "Wallet Funding",
+      metadata: {
+        name: userInfo && userInfo.fullname,
+        email: userInfo && userInfo.email,
+      },
+      incomeSplitConfig: [
+        {
+          subAccountCode: "MFY_SUB_480056987063",
+          feePercentage: 20,
+          splitAmount: (amount * 20) / 100,
+          feeBearer: true,
+        },
+        {
+          subAccountCode: "MFY_SUB_787486531526",
+          feePercentage: 80,
+          splitAmount: (amount * 80) / 100,
+          feeBearer: true,
+        },
+      ],
+
+      onLoadStart: () => {
+        console.log("loading has started");
+      },
+      onLoadComplete: () => {
+        console.log("SDK is UP");
+      },
+
+      onComplete: function (response) {
+        //Implement what happens when the transaction is completed.
+
+        if (response.status === "SUCCESS") {
+          dispatch(fundCustomerWallet(amount, "Funded Wallet", transRef));
+        }
+      },
+      onClose: function (data) {
+        //Implement what should happen when the modal is closed here
+        console.log(data);
+      },
     });
-
-    squadInstance.setup();
-    squadInstance.open();
   };
-
   //generate a random transaction ref
   function randomReference() {
     var length = 10;
@@ -53,13 +87,6 @@ function FundWalletScreen() {
     for (var i = length; i > 0; --i)
       result += chars[Math.floor(Math.random() * chars.length)];
     return result;
-  }
-
-  //callback function that gets triggered on payment success or failure
-  function paymentCallback(response) {
-    if (response != null) {
-      console.log(response);
-    }
   }
 
   return (
@@ -107,9 +134,7 @@ function FundWalletScreen() {
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                 />
-                <Form.Text style={{ color: "#8c5eff" }}>
-                  Pay minimum of 1,000 Naira
-                </Form.Text>
+                
               </Form.Group>
 
               <div className="d-grid">
@@ -122,12 +147,7 @@ function FundWalletScreen() {
             </Form>
           </Accordion.Body>
         </Accordion.Item>
-        <Accordion.Item eventKey="1">
-          <Accordion.Header>Pay with Card</Accordion.Header>
-          <Accordion.Body>
-            <p className="display-6">This Feature is not available yet</p>
-          </Accordion.Body>
-        </Accordion.Item>
+        
       </Accordion>
     </Container>
   );

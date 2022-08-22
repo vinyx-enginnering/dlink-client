@@ -14,7 +14,7 @@ const Register = () => {
   const [phone_number, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [selectedPlan, setSelectedPlan] = useState(1000);
+  const [selectedPlan, setSelectedPlan] = useState(1);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,25 +31,61 @@ const Register = () => {
     if (userInfo) {
       return navigate("/dashboard");
     }
-    
   }, [dispatch, navigate, userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    const squadInstance = new window.squad({
-      key: "pk_6877956d4719eaaa3ea69739d1b9c9f3a4d83da0",
-      amount: selectedPlan * 100,
-      email: email,
-      currency_code: "NGN",
-      onClose: () => console.log("Payment Cancled"),
-      onLoad: () => console.log("Payment Process Started..."),
-      onSuccess: () =>
-        dispatch(register(selectedPlan, fullname, phone_number, email, password)),
-    });
+    // Pay with Monnify
+    window.MonnifySDK.initialize({
+      amount: selectedPlan,
+      currency: "NGN",
+      reference: `${new Date().getTime()}`,
+      customerFullName: fullname,
+      customerEmail: email,
+      apiKey: "MK_PROD_YYE1WG2HE0",
+      contractCode: "1079257248",
+      paymentDescription: "Account Registration Fee",
+      metadata: {
+        name: fullname,
+        email: email,
+      },
+      incomeSplitConfig: [
+        {
+          subAccountCode: "MFY_SUB_480056987063",
+          feePercentage: 20,
+          splitAmount: (selectedPlan * 20) / 100,
+          feeBearer: true,
+        },
+        {
+          subAccountCode: "MFY_SUB_787486531526",
+          feePercentage: 80,
+          splitAmount: (selectedPlan * 80) / 100,
+          feeBearer: true,
+        },
+      ],
 
-    squadInstance.setup();
-    squadInstance.open();
+      onLoadStart: () => {
+        console.log("loading has started");
+      },
+      onLoadComplete: () => {
+        console.log("SDK is UP");
+      },
+
+      onComplete: function (response) {
+        //Implement what happens when the transaction is completed.
+
+        if (response.status === "SUCCESS") {
+          dispatch(
+            register(selectedPlan, fullname, phone_number, email, password)
+          );
+        }
+      },
+      onClose: function (data) {
+        //Implement what should happen when the modal is closed here
+        console.log(data);
+      },
+    });
   };
 
   const validateMe = (e) => {
@@ -68,7 +104,7 @@ const Register = () => {
   };
 
   const paymentOptions = [
-    { value: 1000, label: "1,000 (Monthly plan)" },
+    { value: 1, label: "1,000 (Monthly plan)" },
     { value: 10000, label: "10,000 (Yearly plan)" },
   ];
 
@@ -94,13 +130,13 @@ const Register = () => {
         </div>
 
         <p className="lead m-0 p-0 mb-0">Create an account</p>
-      <hr />
+        <hr />
         {loading && <Loader />}
         {error && <Message variant="danger">{error}</Message>}
         {reg_loading && <Loader />}
         {reg_error && <Message variant="danger">{error}</Message>}
 
-        <Form onSubmit={submitHandler}>
+        <Form onSubmit={submitHandler} autoComplete="off">
           <Form.Group controlId="name" className="mb-3">
             <Form.Label>Full Name</Form.Label>
             <Form.Control
@@ -138,9 +174,9 @@ const Register = () => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Select Plan</Form.Label>
-          <Select options={paymentOptions} onChange={submitSelectedPlan} />
-        </Form.Group>
+            <Form.Label>Select Plan</Form.Label>
+            <Select options={paymentOptions} onChange={submitSelectedPlan} />
+          </Form.Group>
 
           <div className="mt-2">
             By continuing you agree to all{" "}
@@ -148,7 +184,6 @@ const Register = () => {
               Terms & Conditions
             </a>
           </div>
-         
 
           <Row>
             <Col>

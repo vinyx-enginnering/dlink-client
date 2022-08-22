@@ -26,22 +26,58 @@ function FundWalletForm() {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    var transRef = randomReference();
+    const fees = (amount * 1) / 100;
+    const transRef = randomReference();
 
-    const squadInstance = new window.squad({
-      key: "pk_6877956d4719eaaa3ea69739d1b9c9f3a4d83da0",
-      amount: amount * 100,
-      transaction_ref: transRef,
-      email: userInfo && userInfo.email,
-      currency_code: "NGN",
-      onClose: () => console.log("Payment Cancled"),
-      onLoad: () => console.log("Payment Process Started..."),
-      onSuccess: () =>
-        dispatch(fundCustomerWallet(amount, "Funded Wallet", transRef)),
+    // Pay with Monnify
+    window.MonnifySDK.initialize({
+      amount: amount + fees,
+      currency: "NGN",
+      reference: `${new Date().getTime()}`,
+      customerFullName: userInfo && userInfo.fullname,
+      customerEmail: userInfo && userInfo.email,
+      apiKey: "MK_TEST_WMSS0URBQ8",
+      contractCode: "1079257248",
+      paymentDescription: "Wallet Funding",
+      metadata: {
+        name: userInfo && userInfo.fullname,
+        email: userInfo && userInfo.email,
+      },
+      incomeSplitConfig: [
+        {
+          subAccountCode: "MFY_SUB_538199484955",
+          feePercentage: 20,
+          splitAmount: (amount * 20) / 100,
+          feeBearer: true,
+        },
+        {
+          subAccountCode: "MFY_SUB_380118830437",
+          feePercentage: 80,
+          splitAmount: (amount * 80) / 100,
+          feeBearer: true,
+        },
+      ],
+
+      onLoadStart: () => {
+        console.log("loading has started");
+      },
+      onLoadComplete: () => {
+        console.log("SDK is UP");
+      },
+
+      onComplete: function (response) {
+        //Implement what happens when the transaction is completed.
+
+        if (response.status === "SUCCESS") {
+          dispatch(fundCustomerWallet(amount, "Funded Wallet", transRef));
+        }
+      },
+      onClose: function (data) {
+        //Implement what should happen when the modal is closed here
+        console.log(data);
+      },
     });
 
-    squadInstance.setup();
-    squadInstance.open();
   };
 
   //generate a random transaction ref
@@ -53,13 +89,6 @@ function FundWalletForm() {
     for (var i = length; i > 0; --i)
       result += chars[Math.floor(Math.random() * chars.length)];
     return result;
-  }
-
-  //callback function that gets triggered on payment success or failure
-  function paymentCallback(response) {
-    if (response != null) {
-      console.log(response);
-    }
   }
 
   return (
