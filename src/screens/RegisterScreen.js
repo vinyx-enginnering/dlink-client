@@ -14,7 +14,7 @@ const Register = () => {
   const [phone_number, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [selectedPlan, setSelectedPlan] = useState(1);
+  const [selectedPlan, setSelectedPlan] = useState(1000);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ const Register = () => {
       customerFullName: fullname,
       customerEmail: email,
       apiKey: "MK_PROD_YYE1WG2HE0",
-      contractCode: "1079257248",
+      contractCode: "440026499445",
       paymentDescription: "Account Registration Fee",
       metadata: {
         name: fullname,
@@ -104,7 +104,7 @@ const Register = () => {
   };
 
   const paymentOptions = [
-    { value: 1, label: "1,000 (Monthly plan)" },
+    { value: 1000, label: "1,000 (Monthly plan)" },
     { value: 10000, label: "10,000 (Yearly plan)" },
   ];
 

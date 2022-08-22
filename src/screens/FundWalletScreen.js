@@ -37,7 +37,7 @@ function FundWalletScreen() {
       customerFullName: userInfo && userInfo.fullname,
       customerEmail: userInfo && userInfo.email,
       apiKey: "MK_PROD_YYE1WG2HE0",
-      contractCode: "1079257248",
+      contractCode: "440026499445",
       paymentDescription: "Wallet Funding",
       metadata: {
         name: userInfo && userInfo.fullname,
