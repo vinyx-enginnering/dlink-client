@@ -36,6 +36,7 @@ import SmileInternet from "./views/SmileInternet.js";
 import SpectranetInternet from "./views/SpectranetInternet.js";
 import EditProfile from "./screens/EditProfile.js";
 import LoginForm from "./screens/LoginForm.js";
+import DashboardNavigation from "./components/DashboardNavigation"
 
 const App = () => {
   return (
@@ -46,17 +47,9 @@ const App = () => {
           <Route path="/login" index element={<LoginScreen />} />
           <Route path="/register" element={<RegisterScreen />} />
 
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/fund-wallet" element={<FundWalletScreen />} />
-
-          <Route path="/upgrade" element={<UpgradeAccount />} />
-          <Route path="/phonebook" element={<PhoneBook />} />
-          <Route path="/airtime" element={<VTPassAirtime />} />
-          <Route path="/dataplan" element={<VTPassData />} />
-          <Route path="/smile" element={<SmileInternet />} />
-          <Route path="spectranet" element={<SpectranetInternet />} />
+          
           <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/settings" element={<EditProfile />} />
+          
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/feature" element={<ProductFeature />} />
@@ -64,7 +57,19 @@ const App = () => {
           <Route path="/messaging" element={<Messagingetails />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
 
-          <Route path="/transaction" element={<TransactionDetails />} />
+          
+        </Route>
+        <Route path="/dashboard" element={<DashboardNavigation />}>
+          <Route index element={<Dashboard />} />
+          <Route path="fund-wallet" element={<FundWalletScreen />} />
+          <Route path="settings" element={<EditProfile />} />
+          <Route path="upgrade" element={<UpgradeAccount />} />
+          <Route path="phonebook" element={<PhoneBook />} />
+          <Route path="airtime" element={<VTPassAirtime />} />
+          <Route path="dataplan" element={<VTPassData />} />
+          <Route path="smile" element={<SmileInternet />} />
+          <Route path="spectranet" element={<SpectranetInternet />} />
+          <Route path="transaction" element={<TransactionDetails />} />
         </Route>
         <Route path="/printing/:network" element={<PrintVoucher />} />
         <Route path="/print/glo-500" element={<Glo500Voucher />} />

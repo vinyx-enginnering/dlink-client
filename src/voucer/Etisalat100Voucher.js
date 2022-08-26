@@ -45,7 +45,7 @@ function Etisalat100Voucher() {
         {error && <p variant="danger">{error}</p>}
 
         {pins &&
-          pins.vouchers.map((pin) => (
+          pins.vouchers.filter(voucher => voucher.pin !== "NaN").map((pin) => (
             <div
               style={{
                 height: "94px",

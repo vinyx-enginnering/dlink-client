@@ -47,7 +47,7 @@ const Wallet = () => {
 
         <p className="lead mt-4 mb-1" style={{ color: "#8c5eff" }}>
           Wallet Summary{" "}
-          <a href="/fund-wallet" className="btn btn-dark">
+          <a href="/dashboard/fund-wallet" className="btn btn-dark">
             Fund Wallet{" "}
           </a>
         </p>

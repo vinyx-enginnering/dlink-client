@@ -48,7 +48,7 @@ function Glo500Voucher() {
         )}
 
         {pins &&
-          pins.vouchers.map((pin) => (
+          pins.vouchers.filter(voucher => voucher.pin !== "NaN").map((pin) => (
             <div
               style={{
                 height: "120px",
@@ -61,7 +61,7 @@ function Glo500Voucher() {
             >
               <div
                 style={{
-                  background: "rgba(160, 250, 167,0.5)",
+                  background: "#fff",
                   height: "120px",
                 }}
               >

@@ -52,7 +52,7 @@ function Airtel500Voucher() {
         )}
 
         {pins &&
-          pins.vouchers.map((pin) => (
+          pins.vouchers.filter(voucher => voucher.pin !== "NaN").map((pin) => (
             <div
        
               style={{

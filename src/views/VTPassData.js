@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Modal, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Form, Button, Modal, ListGroup, ListGroupItem, Container } from "react-bootstrap";
 import Select from "react-select";
 import { useSelector, useDispatch } from "react-redux";
 import Message from "../components/Message";
@@ -78,7 +78,8 @@ function VTPassData() {
   }
 
   return (
-    <div className="container py-5 bg-light">
+    <div className="py-5 bg-light">
+      <Container>
       <p className="h3" style={{color: "#8c5eff"}}>Sell Data </p>
 
       <hr />
@@ -180,6 +181,7 @@ function VTPassData() {
           </Button>
         </Modal.Footer>
       </Modal>
+      </Container>
     </div>
   );
 }

@@ -3,8 +3,18 @@ import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { Outlet } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../actions/user";
-import { FaSignInAlt } from "react-icons/fa";
-
+import {
+  FaArrowUp,
+  FaBell,
+  FaCog,
+  FaFireAlt,
+  FaHandsHelping,
+  FaSignInAlt,
+  FaSignOutAlt,
+  FaUserAlt,
+} from "react-icons/fa";
+import CustomContainer from "../components/CustomContainer";
+import SideBar from "./SideBar";
 import FloatingWhatsApp from "react-floating-whatsapp";
 
 const Navigation = () => {
@@ -18,35 +28,37 @@ const Navigation = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const logout_controller = () => {
+    if (userInfo) {
+      dispatch(logout());
+    }
+  };
+
   return (
     <Fragment>
-      <Navbar expand="lg" variant="dark" style={{ backgroundColor: "#8c5eff" }}>
-        <Container>
-          <Navbar.Brand href="/">
+      <Navbar
+        expand="lg"
+        variant="dark"
+        style={{ backgroundColor: "#8c5eff" }}
+        sticky="top"
+      >
+        <Container fluid>
+          <Navbar.Brand href="/dashboard">
             <span style={{ fontSize: "1.6rem", marginTop: "10px" }}>
-              Doublelink
+              Business Portal
             </span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link className="text-light lead" href="/">
-                Home
-              </Nav.Link>
-
-              <Nav.Link className="text-light lead" href="/privacy">
-                Legal
-              </Nav.Link>
-              <Nav.Link className="text-light lead" href="/faq">
-                FAQs
-              </Nav.Link>
-
-              <Nav.Link className="text-light lead" href="/feature">
-                Features
-              </Nav.Link>
-
+              {userInfo && (
+                <Nav.Link>
+                  <SideBar />
+                </Nav.Link>
+              )}
               <Nav.Link className="text-light lead" href="/contact">
-                Contact
+                <FaHandsHelping size={30} />
+                Support
               </Nav.Link>
 
               {/* {userInfo && (
@@ -58,9 +70,29 @@ const Navigation = () => {
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
             <Nav className="">
-              <Nav.Link className="text-light lead" href="/login">
-                Login <FaSignInAlt />{" "}
-              </Nav.Link>
+              {!userInfo && (
+                <Nav.Link className="text-light lead" href="/login">
+                  Login <FaSignInAlt />{" "}
+                </Nav.Link>
+              )}
+
+              {userInfo && (
+                <Nav.Link
+                  className="text-light lead bg-light"
+                  href="#"
+                  onClick={logout_controller}
+                >
+                  <FaSignOutAlt size={30} color="#8c5eff" />{" "}
+                </Nav.Link>
+              )}
+              {userInfo && (
+                <Nav.Link
+                  className="text-light lead bg-light mx-2"
+                  href="/dashboard/settings"
+                >
+                  <FaCog size={30} color="#8c5eff" />{" "}
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

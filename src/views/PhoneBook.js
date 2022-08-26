@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Alert, Table } from "react-bootstrap";
+import { Form, Button, Alert, Table, Container } from "react-bootstrap";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { useSelector, useDispatch } from "react-redux";
@@ -57,7 +57,8 @@ function PhoneBook() {
   };
 
   return (
-    <div className="container mt-5 bg-light py-5">
+    <div className=" bg-light py-5">
+      <Container>
       <p className="lead" style={{ color: "#8c5eff" }}>
         Create New Phonebook
       </p>
@@ -137,6 +138,7 @@ function PhoneBook() {
           </tbody>
         </Table>
       </div>
+      </Container>
     </div>
   );
 }

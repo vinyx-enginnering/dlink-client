@@ -90,7 +90,8 @@ function FundWalletScreen() {
   }
 
   return (
-    <Container className="bg-light py-1">
+    <div className="bg-light py-1">
+      <Container>
       <h3 className="mt-5" style={{ color: "#8c5eff" }}>
         Fund Your Wallet
       </h3>
@@ -149,7 +150,10 @@ function FundWalletScreen() {
         </Accordion.Item>
         
       </Accordion>
-    </Container>
+      <footer className="text-secondary text-end py-5">Copyright © 2022. Doublelink Portal</footer>
+      </Container>
+      
+    </div>
   );
 }
 

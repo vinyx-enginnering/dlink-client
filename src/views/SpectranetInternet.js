@@ -7,6 +7,7 @@ import {
   ListGroup,
   ListGroupItem,
   Image,
+  Container,
 } from "react-bootstrap";
 import Select from "react-select";
 import { useSelector, useDispatch } from "react-redux";
@@ -70,7 +71,8 @@ function SpectranetInternet() {
   };
 
   return (
-    <div className="bg-light py-5 container">
+    <div className="bg-light py-5">
+      <Container>
       <p className="h3" style={{ color: "#8c5eff" }}>
         Purchase Spectranet Internet
       </p>
@@ -178,6 +180,7 @@ function SpectranetInternet() {
           </Button>
         </Modal.Footer>
       </Modal>
+      </Container>
     </div>
   );
 }

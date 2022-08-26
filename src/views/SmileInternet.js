@@ -9,6 +9,7 @@ import {
   ListGroup,
   ListGroupItem,
   Image,
+  Container,
 } from "react-bootstrap";
 import Select from "react-select";
 import { useSelector, useDispatch } from "react-redux";
@@ -77,7 +78,8 @@ function SmileInternet() {
   };
 
   return (
-    <div className="bg-light py-5 container">
+    <div className="bg-light py-5 ">
+      <Container>
       <p className="h3" style={{color: "#8c5eff"}}>Purchase Smile Internet</p>
       <p className="text-muted">
         
@@ -216,6 +218,7 @@ function SmileInternet() {
           </Button>
         </Modal.Footer>
       </Modal>
+      </Container>
     </div>
   );
 }

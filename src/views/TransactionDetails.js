@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../components/Loader.js";
 import Message from "../components/Message.js";
@@ -22,7 +22,8 @@ function TransactionDetails() {
   }, []);
 
   return (
-    <div className="container mt-5 mb-5 bg-light py-5">
+    <div className="mb-5 bg-light py-5">
+      <Container>
        <h3 className="" style={{ color: "#8c5eff" }}>
         All Transaction Records
       </h3>
@@ -60,6 +61,7 @@ function TransactionDetails() {
           
         </tbody>
       </Table>
+      </Container>
     </div>
   );
 }

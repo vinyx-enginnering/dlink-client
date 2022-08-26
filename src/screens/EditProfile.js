@@ -89,6 +89,7 @@ function EditProfile() {
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
+        <footer className="text-secondary text-end py-5">Copyright © 2022. Doublelink Portal</footer>
       </Container>
     </div>
   );

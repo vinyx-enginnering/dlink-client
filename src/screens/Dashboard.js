@@ -10,6 +10,7 @@ import {
   FaNetworkWired,
   FaPrint,
   FaReceipt,
+  FaShoppingBag,
   FaSimCard,
   FaTv,
   FaUpload,
@@ -53,11 +54,11 @@ const Dashboard = () => {
   return (
     <div
       className="pt-4 px-2 pb-5"
-      style={{ margin: "auto", backgroundColor: "#f6f6f6", marginTop: "0px" }}
+      style={{ margin: "auto", backgroundColor: "#f6f6f6", marginTop: "0px", outerHeight: "100%" }}
     >
       <Tab.Container id="left-tabs-example" defaultActiveKey="wallet">
         <Row>
-          <Col sm={2} md={2} lg={2}>
+          <Col sm={12} md={4} lg={2} xs={12}>
             <Nav variant="pills" className="flex-column ">
               <Nav.Item>
                 <Nav.Link eventKey="wallet">
@@ -152,15 +153,15 @@ const Dashboard = () => {
                 <Nav.Link eventKey="purchase_bulk_epins">
                   {" "}
                   <span className="px-2">
-                    <FaBuyNLarge />
+                    <FaShoppingBag />
                   </span>{" "}
-                  Purchase Bulk E-pins
+                  Order Epin
                 </Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>
-          <Col sm={10} md={10} lg={10}>
-            <div style={{ width: "80%" }}>
+          <Col sm={12} md={8} lg={10} sx={12}>
+            <div style={{ width: "100%" }}>
               <Tab.Content>
                 <Tab.Pane eventKey="wallet">
                   <Wallet />

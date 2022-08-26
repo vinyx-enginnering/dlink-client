@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #c0c3c498 !important;
   overflow-x: hidden !important;
-  background-image: url("./assets/images/pattern.png");
+  /* background-image: url("./assets/images/pattern.png"); */
   page-break-after: avoid !important;
   page-break-before: avoid !important;
 }

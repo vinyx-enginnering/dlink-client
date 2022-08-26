@@ -45,7 +45,7 @@ function SideBar() {
 
   return (
     <div>
-      <FaBars onClick={toggleShow} size={22} color="white" />
+      <FaBars onClick={toggleShow} size={30} color="white" />
       <Offcanvas
         show={show}
         onHide={handleClose}
@@ -54,7 +54,7 @@ function SideBar() {
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <span className="lead">Double Link</span>
+            <span className="lead text-light">Doublelink Portal</span>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
@@ -96,14 +96,14 @@ function SideBar() {
               </ListGroupItem>
               <ListGroupItem
                 action
-                onClick={() => redirect("/phonebook")}
+                onClick={() => redirect("/dashboard/phonebook")}
                 variant="primary"
               >
                 <FaPhone /> Manage Phone Book
               </ListGroupItem>
               <ListGroupItem
                 action
-                onClick={() => redirect("/transaction")}
+                onClick={() => redirect("/dashboard/transaction")}
                 variant="primary"
               >
                 <FaHistory /> View Transactions
@@ -127,28 +127,28 @@ function SideBar() {
               <ListGroupItem
                 action
                 variant="primary"
-                onClick={() => redirect("/airtime")}
+                onClick={() => redirect("/dashboard/airtime")}
               >
                 <FaMobile /> Airtime
               </ListGroupItem>
               <ListGroupItem
                 action
                 variant="primary"
-                onClick={() => redirect("/dataplan")}
+                onClick={() => redirect("/dashboard/dataplan")}
               >
                 <FaMobileAlt /> Data Bundle
               </ListGroupItem>
               <ListGroupItem
                 action
                 variant="primary"
-                onClick={() => redirect("/smile")}
+                onClick={() => redirect("/dashboard/smile")}
               >
                 <FaWifi /> Smile Internet
               </ListGroupItem>
               <ListGroupItem
                 action
                 variant="primary"
-                onClick={() => redirect("/spectranet")}
+                onClick={() => redirect("/dashboard/spectranet")}
               >
                 <FaRoute /> Spectranet Packages
               </ListGroupItem>

@@ -64,7 +64,7 @@ function GenerateVoucher() {
         </Form.Group>
 
         <Button variant="primary" type="submit">
-          Pay & Generate Pin
+          Generate Voucher
         </Button>
       </Form>
       <Modal
