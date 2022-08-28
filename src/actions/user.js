@@ -19,34 +19,39 @@ import {
 } from "../constant/types.js";
 
 // VALIDATE USERS
-export const user_validate = (email) => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: VALIDATE_USER_REQUEST,
-    });
+export const user_validate =
+  (email, referral) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: VALIDATE_USER_REQUEST,
+      });
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
-    const { data } = await api.post("/customer/validate", { email }, config);
+      const { data } = await api.post(
+        "/customer/validate",
+        { email, referral },
+        config
+      );
 
-    dispatch({
-      type: VALIDATE_USER_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: VALIDATE_USER_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+      dispatch({
+        type: VALIDATE_USER_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: VALIDATE_USER_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 // CUSTOMER LOGIN PROCESS
 export const login = (email, password) => async (dispatch, getState) => {
@@ -83,7 +88,6 @@ export const login = (email, password) => async (dispatch, getState) => {
     });
   }
 };
-
 
 // CUSTOMER LOGIN PROCESS
 export const login_mobile = (email, password) => async (dispatch, getState) => {
@@ -138,7 +142,7 @@ export const logout_me = () => (dispatch) => {
 
 // STUDENT REGISTRATION PROCESS
 export const register =
-  (plan, fullname, phone_number, email, password) =>
+  (plan, fullname, phone_number, email, password, referral) =>
   async (dispatch, getState) => {
     try {
       dispatch({
@@ -159,6 +163,7 @@ export const register =
           phone_number,
           email,
           password,
+          referral
         },
         config
       );

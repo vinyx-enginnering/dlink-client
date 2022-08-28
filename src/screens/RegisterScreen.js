@@ -10,6 +10,7 @@ import Select from "react-select";
 
 const Register = () => {
   const [fullname, setFullName] = useState("");
+  const [referral, setReferral] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [phone_number, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -77,7 +78,7 @@ const Register = () => {
 
         if (response.status === "SUCCESS") {
           dispatch(
-            register(selectedPlan, fullname, phone_number, email, password)
+            register(selectedPlan, fullname, phone_number, email, password, referral)
           );
         }
       },
@@ -99,13 +100,13 @@ const Register = () => {
     ) {
       return alert("Kindly fill in all fields");
     } else {
-      dispatch(user_validate(email));
+      dispatch(user_validate(email, referral));
     }
   };
 
   const paymentOptions = [
     { value: 1000, label: "1,000 (Monthly plan)" },
-    { value: 10000, label: "10,000 (Yearly plan)" },
+    { value: 10000, label: "10,000 (Unlimited))" },
   ];
 
   return (
@@ -137,6 +138,15 @@ const Register = () => {
         {reg_error && <Message variant="danger">{error}</Message>}
 
         <Form onSubmit={submitHandler} autoComplete="off">
+          <Form.Group controlId="referral" className="mb-3">
+            <Form.Label>Referral</Form.Label>
+            <Form.Control
+              type="text"
+              value={referral}
+              onChange={(e) => setReferral(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
           <Form.Group controlId="name" className="mb-3">
             <Form.Label>Full Name</Form.Label>
             <Form.Control

@@ -227,14 +227,14 @@ function HomeScreen() {
             {/* <!-- Pricing card pro--> */}
             <div className="col-lg-6 col-xl-4">
               <div className="card mb-5 mb-xl-0">
-                <div className="card-body p-5">
+                <div className="card-body p-4">
                   <div className="small text-uppercase fw-bold">
                     <i className="bi bi-star-fill text-warning"></i>
                     Premium
                   </div>
                   <div className="mb-3">
                     <span className="display-4 fw-bold">N10,000</span>
-                    <span className="text-muted">/year</span>
+                    <span className="text-muted">/merchant</span>
                   </div>
                   <ul className="list-unstyled mb-4">
                     <li className="mb-2">
@@ -278,7 +278,7 @@ function HomeScreen() {
             {/* <!-- Pricing card enterprise--> */}
             <div className="col-lg-6 col-xl-4">
               <div className="card">
-                <div className="card-body p-5">
+                <div className="card-body p-4">
                   <div className="small text-uppercase fw-bold text-muted">
                     Getting Started
                   </div>
